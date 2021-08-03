@@ -5,10 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />  
+    <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="8.1.1" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
+    <PackageReference Include="masstransit" Version="7.1.5" />
+    <PackageReference Include="masstransit.aspnetcore" Version="7.1.5" />
+    <PackageReference Include="masstransit.rabbitmq" Version="7.1.5" />  
     <PackageReference Include="Microsoft.extensions.caching.stackexchangeredis" Version="5.0.1" />
     <PackageReference Include="newtonsoft.json" Version="12.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Messages\EventBus.Messages.csproj" />
   </ItemGroup>
 
    <ItemGroup>
