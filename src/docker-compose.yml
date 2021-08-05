@@ -3,10 +3,13 @@ version: '3.4'
 services:
   catalogdb:
     image: mongo
-
+  
   basketdb:
     image: redis:alpine
-
+  
+  pgadmin:
+    image: dpage/pgadmin4
+  
   discountdb:
     image: postgres
 
@@ -14,39 +17,47 @@ services:
     image: mcr.microsoft.com/mssql/server:2017-latest
     extra_hosts:
       - "localhost:192.168.65.2"
+ 
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
-  pgadmin:
-    image: dpage/pgadmin4  
-
   catalog.api:
-    image: ${DOCKER_REGISTRY-}catalogapi
-    build:
-      context: .
-      dockerfile: Services/Catalog/Catalog.API/Dockerfile
-
-  basket.api:
-    image: ${DOCKER_REGISTRY-}basketapi
-    build:
-      context: .
-      dockerfile: Services/Basket/Basket.API/Dockerfile
-
+    image: anv89/micros:catalogApi
+    
   discount.grpc:
-    image: ${DOCKER_REGISTRY-}discountgrpc
+    image: discountgrpc
     build:
       context: .
       dockerfile: Services/Discount/Discount.Grpc/Dockerfile
-
+    
+  basket.api:
+    image: anv89/micros:basketApi
+  
   ordering.api:
-    image: ${DOCKER_REGISTRY-}orderingapi
     build:
       context: .
-      dockerfile: Services/Ordering/Ordering.API/Dockerfile      
+      dockerfile: Services/Ordering/Ordering.API/Dockerfile
+  
+  ocelotapigw:
+    image: ocelotapigw
+    build:
+      context: .
+      dockerfile: ApiGateways/OcelotApiGw/Dockerfile
+
+  shopping.aggregator:
+    image: shoppingaggregator
+    build:
+      context: .
+      dockerfile: ApiGateways/Shopping.Aggregator/Dockerfile
+
+  ecartmicros:
+    image: ecartmicros
+    build:
+      context: .
+      dockerfile: WebApps/AspnetRunBasics/Dockerfile      
 
 volumes:
   mongo_data:
-  portainer_data:
   postgres_data:
   pgadmin_data:
   elasticsearch-data:
