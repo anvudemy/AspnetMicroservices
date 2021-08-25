@@ -3,11 +3,11 @@
 version: '3.4'
 
 services:
-  orderingapi:
-    image: orderingapi
+  catalogapi:
+    image: catalogapi
     build:
       context: .
-      dockerfile: Services/Ordering/Ordering.API/Dockerfile
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
     ports:
       - 80:80
     environment:

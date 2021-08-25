@@ -80,7 +80,8 @@
             "dockerRun": {},
             "netCore": {
                 "appProject": "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj",
-                "enableDebugging": true
+                "enableDebugging": true,
+                "configureSsl": false
             }
         },
         {
